@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
-    <property name="LOGS_HOME" value="/opt/program/app/logback-demo"/>
+    <property name="LOGS_HOME" value="/opt/program/app/logback-demo/logs"/>
+    <!-- 该值由启动程序时候动态传入 -->
+    <property name="SUB_LOG_HOME" value="" />
     <property name="LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{25} - %msg%n"/>
     <property name="LOG_CHARSET" value="UTF-8"/>
 
@@ -13,21 +15,21 @@
     </appender>
 
     <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_HOME}/${subLogDir}/logback-demo.log</file>
+        <file>${LOGS_HOME}/${SUB_LOG_HOME}/logback-demo.log</file>
         <encoder>
             <pattern>${LOG_PATTERN}</pattern>
             <charset>${LOG_CHARSET}</charset>
         </encoder>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_HOME}/${subLogDir}/logback-demo-%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>${LOGS_HOME}/${SUB_LOG_HOME}/logback-demo-%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>30</maxHistory>
         </rollingPolicy>
     </appender>
 
     <appender name="ERRORFILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_HOME}/${subLogDir}/logback-demo.error.log</file>
+        <file>${LOGS_HOME}/${SUB_LOG_HOME}/logback-demo.error.log</file>
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_HOME}/${subLogDir}/logback-demo-%d{yyyy-MM-dd}.error.log</fileNamePattern>
+            <fileNamePattern>${LOGS_HOME}/${SUB_LOG_HOME}/logback-demo-%d{yyyy-MM-dd}.error.log</fileNamePattern>
             <maxHistory>20</maxHistory>
         </rollingPolicy>
         <encoder>
